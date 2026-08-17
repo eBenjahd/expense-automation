@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     "corsheaders",
     "rest_framework",
     "django_filters",
+    # Own
+    "users",
+    "finance",
 ]
 
 MIDDLEWARE = [
