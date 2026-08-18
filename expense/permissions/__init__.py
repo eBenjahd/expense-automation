@@ -1,0 +1,2 @@
+from .n8n_telegram_permission import IsN8NTelegramRequest
+from .n8n_permission import IsN8NRequest

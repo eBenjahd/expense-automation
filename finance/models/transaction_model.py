@@ -15,3 +15,6 @@ class Transaction(models.Model):
     source = models.CharField(default="telegram", max_length=20)
     occurred_at = models.DateTimeField(null=True, blank=True)  # fecha del gasto (puede diferir de created_at)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user} - {self.kind}"

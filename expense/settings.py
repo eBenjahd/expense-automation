@@ -23,6 +23,7 @@ CSRF_TRUSTED_ORIGINS = env.list(
     default=[]
 )
 
+N8N_API_KEY = env("N8N_API_KEY")
 
 # Application definition
 
@@ -132,7 +133,7 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": (
-        "rest_framework.permissions.AllowAny", #cambiar a un permiso especifico luego
+        "expense.permissions.IsN8NTelegramRequest",
     ),
 
     "DEFAULT_FILTER_BACKENDS": (
@@ -140,13 +141,15 @@ REST_FRAMEWORK = {
     ),
 
     "DEFAULT_THROTTLE_CLASSES": (
-        "rest_framework.throttling.AnonRateThrottle",
-        "rest_framework.throttling.UserRateThrottle",
+        "expense.throttles.N8NThrottle",
+        "expense.throttles.TelegramSecondThrottle",
+        "expense.throttles.TelegramMinuteThrottle",
     ),
 
     "DEFAULT_THROTTLE_RATES": {
-        "anon": "20/day",
-        "user": "50/day",
+        "n8n": "100/minute",
+        "telegram_second": "5/second",
+        "telegram_minute": "100/minute",
     },
 
     "DEFAULT_PAGINATION_CLASS":
