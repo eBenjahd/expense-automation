@@ -1,1 +1,2 @@
 from .user_serializer import TelegramSerializer
+from .profile_serializer import TelegramProfileSerializer

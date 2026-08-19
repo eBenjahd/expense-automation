@@ -1,1 +1,1 @@
-from .user_view import TelegramUserView
+from .user_view import TelegramUserView, TelegramProfileView

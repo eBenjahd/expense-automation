@@ -6,7 +6,7 @@ from finance.models import Transaction, Category, Account
 
 class TransactionSerializer(serializers.ModelSerializer):
 
-    account = AccountSerializer()
+    account = AccountSerializer(required=False, allow_null=True)
     category = CategorySerializer()
 
     class Meta:
