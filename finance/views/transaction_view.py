@@ -35,7 +35,11 @@ class TransactionListCreateView(ListCreateAPIView):
             telegram_chat_id=telegram_chat_id
         )
 
-        serializer.save(user=profile.user)
+        serializer.save(
+            user=profile.user,
+            raw_text=self.request.data.get('raw_text',''),
+            source = 'telegram',
+        )
 
 
 class TransactionDetailView(RetrieveUpdateDestroyAPIView):

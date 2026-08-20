@@ -9,5 +9,16 @@ class Budget(models.Model):
     currency = models.CharField(max_length=3, default="PEN")
     created_at = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+
+        ordering = ["-created_at"]
+
+        constraints = [
+            models.UniqueConstraint(
+                fields=["user", "category", "currency"],
+                name="unique_budget_per_user_category_currency"
+            )
+        ]
+
     def __str__(self):
         return f"{self.category.name}: {self.monthly_limit} {self.currency}"
