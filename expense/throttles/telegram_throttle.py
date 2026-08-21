@@ -45,3 +45,19 @@ class N8NThrottle(SimpleRateThrottle):
             return None
 
         return f"throttle:n8n:{api_key}"
+    
+
+class TelegramDayThrottle(SimpleRateThrottle):
+
+    scope = "telegram_day"
+
+    def get_cache_key(self, request, view):
+
+        chat_id = request.headers.get("X-Telegram-Chat-ID")
+
+        if chat_id:
+            ident = f"telegram:{chat_id}"
+        else:
+            ident = "n8n:unknown"
+
+        return f"throttle:{self.scope}:{ident}"

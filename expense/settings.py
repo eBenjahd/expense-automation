@@ -144,12 +144,14 @@ REST_FRAMEWORK = {
         "expense.throttles.N8NThrottle",
         "expense.throttles.TelegramSecondThrottle",
         "expense.throttles.TelegramMinuteThrottle",
+        "expense.throttles.TelegramDayThrottle",
     ),
 
     "DEFAULT_THROTTLE_RATES": {
         "n8n": "100/minute",
         "telegram_second": "5/second",
         "telegram_minute": "100/minute",
+        "telegram_day": "100/day",
     },
 
     "DEFAULT_PAGINATION_CLASS":
