@@ -12,11 +12,22 @@ class BudgetListCreateView(ListCreateAPIView):
     def get_queryset(self):
         telegram_chat_id = self.request.headers.get("X-Telegram-Chat-ID")
 
+        category = self.request.query_params.get('category')
+        currency = self.request.query_params.get('currency')
+
         profile = TelegramProfile.objects.select_related("user").get(
             telegram_chat_id=telegram_chat_id
         )
 
-        return Budget.objects.filter(user=profile.user)
+        queryset = Budget.objects.filter(user=profile.user)
+
+        if category:
+            queryset = queryset.filter(category__name=category)
+
+        if currency:
+            queryset = queryset.filter(currency=currency)
+
+        return queryset.order_by('-created_at')
 
     def perform_create(self, serializer):
         telegram_chat_id = self.request.headers.get("X-Telegram-Chat-ID")
