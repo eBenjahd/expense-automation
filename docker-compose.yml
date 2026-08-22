@@ -1,0 +1,46 @@
+services:
+
+  postgres:
+    container_name: postgres
+    image: postgres:16
+    restart: always
+
+    env_file:
+      - .env.postgres
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+    networks:
+      - automation-network
+
+  backend:
+    image: ebenjahd/expense-automation:1.1 
+    container_name: expense-automation
+    restart: always
+
+    env_file:
+      - .env.backend
+
+    ports:
+      - "8000:8000"
+    
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+    networks:
+      - automation-network
+
+volumes:
+  postgres_data:
+
+networks:
+  automation-network:
+    
