@@ -23,6 +23,8 @@ def send_budget_notification(result):
                 "limit": str(result["limit"]),
                 "percentage": result["percentage"],
                 "level": result["level"],
+                "period_start": result["period_start"].isoformat(),
+                "period_end": result["period_end"].isoformat(),
             },
         },
         timeout=5,

@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     "django_filters",
     # Own
     "users",
-    "finance.apps.FinanceConfig",
+    "finance",
 ]
 
 MIDDLEWARE = [
