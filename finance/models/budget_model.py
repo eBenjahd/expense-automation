@@ -8,6 +8,13 @@ class Budget(models.Model):
     monthly_limit = models.DecimalField(max_digits=10, decimal_places=2)
     currency = models.CharField(max_length=3, default="PEN")
     created_at = models.DateTimeField(auto_now_add=True)
+    last_alert_level = models.CharField(
+        max_length=10,
+        null=True,
+        blank=True,
+        choices=[("warning", "80%"), ("reached", "100%")],
+    )
+    last_alert_period = models.DateField(null=True, blank=True)
 
     class Meta:
 

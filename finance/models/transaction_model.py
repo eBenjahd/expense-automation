@@ -18,3 +18,8 @@ class Transaction(models.Model):
 
     def __str__(self):
         return f"{self.user} - {self.kind}"
+    
+    @property
+    def effective_date(self):
+        """Fecha real del gasto: occurred_at si existe, sino created_at."""
+        return self.occurred_at or self.created_at

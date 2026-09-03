@@ -25,6 +25,8 @@ CSRF_TRUSTED_ORIGINS = env.list(
 
 N8N_API_KEY = env("N8N_API_KEY")
 
+N8N_EXPENSES_EVENTS_URL = env("N8N_EXPENSES_EVENTS_URL")
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -40,7 +42,7 @@ INSTALLED_APPS = [
     "django_filters",
     # Own
     "users",
-    "finance",
+    "finance.apps.FinanceConfig",
 ]
 
 MIDDLEWARE = [
