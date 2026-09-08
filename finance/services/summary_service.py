@@ -9,7 +9,7 @@ from finance.utils import get_week_range
 
 def weekly_summary(user):
 
-    reference_date = timezone.now()
+    reference_date = timezone.localtime()
     start, end = get_week_range(reference_date)
 
     transaction = (
@@ -30,13 +30,17 @@ def weekly_summary(user):
         )
     )
 
-    total = transaction.aggregate(
+    total = (
+        transaction
+        .aggregate(
             total=Sum("amount")
         )["total"] or 0
+    )
 
-    by_category = (transaction
+    by_category = (
+        transaction
         .values(
-            category_name= F("category__name")
+            category_name=F("category__name")
         )
         .annotate(
             total=Sum("amount")
@@ -45,5 +49,5 @@ def weekly_summary(user):
 
     return {
         "total_spent": total,
-        "by_category": by_category,
+        "by_category": list(by_category),
     }

@@ -3,14 +3,20 @@ from django.utils import timezone
 
 
 def get_week_range(reference_date=None):
-    
-    date = reference_date or timezone.now()
+
+    date = reference_date or timezone.localtime()
 
     weekday = date.weekday()
 
     start_date = date - timedelta(days=weekday)
 
+    start_date = start_date.replace(
+        hour=0,
+        minute=0,
+        second=0,
+        microsecond=0,
+    )
+
     end_date = start_date + timedelta(days=7)
 
     return start_date, end_date
-

@@ -97,3 +97,9 @@ docker-compose.override.yml
 .Trashes
 .fseventsd
 .Spotlight-V100
+
+
+# ============================================================
+# CELERY
+# ============================================================
+celerybeat-schedule.db
