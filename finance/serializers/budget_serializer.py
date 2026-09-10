@@ -12,6 +12,16 @@ class BudgetSerializer(serializers.ModelSerializer):
         fields = ["id","category", "monthly_limit", "currency"]
         read_only_fields = ["id"]
 
+    def validate_monthly_limit(self, value):
+
+        if value < 0: 
+
+            raise serializers.ValidationError(
+                "El presupuesto no puede ser negativo."
+            )
+
+        return value
+    
     def create(self, validated_data):
 
         category_data = validated_data.pop("category", None)
