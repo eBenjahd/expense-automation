@@ -10,3 +10,7 @@ from .budget_view import (
 from .weekly_summary_view import (
     WeeklySummaryView
 )
+
+from .summary_view import (
+    SummaryView
+)

@@ -2,7 +2,7 @@ from django.utils import timezone
 
 def get_month_range(reference_date=None):
     """Devuelve (inicio, fin_exclusivo) del mes de reference_date."""
-    ref = reference_date or timezone.now()
+    ref = reference_date or timezone.localtime()
     start = ref.replace(day=1, hour=0, minute=0, second=0, microsecond=0)
 
     if start.month == 12:
