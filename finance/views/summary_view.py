@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from expense.permissions import IsN8NTelegramRequest
 
 from users.models import TelegramProfile
-from finance.services import monthly_summary
+from finance.services import monthly_summary, weekly_summary
 
 from django.utils import timezone
 
@@ -69,7 +69,7 @@ class SummaryView(APIView):
         match rango:
 
             case "weekly":
-                ...
+                summary = weekly_summary(user=user)
 
             case "monthly":
                 summary = monthly_summary(
@@ -78,6 +78,7 @@ class SummaryView(APIView):
                     start_month=start_month,
                 )
             
+            # FUTURE FEATURE TO IMPLEMENT
             case "yearly":
                 ...
 
