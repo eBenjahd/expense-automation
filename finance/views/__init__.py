@@ -14,3 +14,7 @@ from .weekly_summary_view import (
 from .summary_view import (
     SummaryView
 )
+
+from .monthly_report_view import (
+    MonthlyReportView
+)

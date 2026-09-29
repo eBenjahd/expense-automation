@@ -5,7 +5,8 @@ from .views import (
     BudgetListCreateView,
     BudgetDetailView,
     WeeklySummaryView,
-    SummaryView
+    SummaryView,
+    MonthlyReportView,
 )
 
 urlpatterns = [
@@ -15,4 +16,5 @@ urlpatterns = [
     path("budgets/<int:pk>/", BudgetDetailView.as_view(), name="budgets-detail"),
     path("summary/weekly/", WeeklySummaryView.as_view(), name="weekly-summary"),
     path("summary/", SummaryView.as_view(), name="monthly-summary"),
+    path("reports/excel/", MonthlyReportView.as_view(), name="excel-report"),
 ]
