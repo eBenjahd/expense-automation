@@ -44,3 +44,7 @@ Thumbs.db
 
 # Docker local overrides
 docker-compose.override.yml
+
+# Excel
+monthly_report_*.xlsx
+monthly_report.xlsx

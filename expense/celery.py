@@ -27,6 +27,14 @@ app.conf.beat_schedule = {
             minute=0,
         ),
     },
+    "monthly-report": {
+        "task": "finance.tasks.monthly.monthly_report_task",
+        "schedule" : crontab(
+            day_of_month=1,
+            hour=8,
+            minute=0,
+        )
+    }
 }
 
 # PRUEBA DESARROLLO PARA COMPROBAR FUNCIONAMIENTO
