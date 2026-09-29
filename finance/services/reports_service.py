@@ -132,7 +132,15 @@ class MonthlyReportService:
             )
         )
 
-        df = pd.DataFrame.from_records(expenses)
+        df = pd.DataFrame.from_records(
+            expenses,
+            columns=[
+                "amount",
+                "category__name",
+                "account__name",
+                "currency",
+            ]
+        )
 
         return df
     
@@ -161,7 +169,15 @@ class MonthlyReportService:
             )
         )
 
-        df = pd.DataFrame.from_records(incomes)
+        df = pd.DataFrame.from_records(
+            incomes,
+            columns=[
+                "amount",
+                "category__name",
+                "account__name",
+                "currency",
+            ]
+        )
 
         return df
     
@@ -177,7 +193,14 @@ class MonthlyReportService:
             )
         )
 
-        df = pd.DataFrame.from_records(budgets)
+        df = pd.DataFrame.from_records(
+            budgets,
+            columns=[
+                "category__name",
+                "monthly_limit",
+                "currency"
+            ]
+        )
 
         return df
     
@@ -204,7 +227,13 @@ class MonthlyReportService:
             )
         )
 
-        df = pd.DataFrame.from_records(accounts)
+        df = pd.DataFrame.from_records(
+            accounts,
+            columns=[
+                "account__name",
+                "currency",
+            ]
+        )
 
         return df
     
