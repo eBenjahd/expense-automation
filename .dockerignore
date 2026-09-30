@@ -48,3 +48,6 @@ docker-compose.override.yml
 # Excel
 monthly_report_*.xlsx
 monthly_report.xlsx
+
+# Celery Beat
+celerybeat-schedule*
