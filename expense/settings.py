@@ -164,3 +164,10 @@ REST_FRAMEWORK = {
 
     "PAGE_SIZE": 5,
 }
+
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.redis.RedisCache",
+        "LOCATION": env("REDIS_CACHE_URL"),
+    }
+}
